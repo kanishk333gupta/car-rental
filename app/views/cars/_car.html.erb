@@ -1,0 +1,32 @@
+<div id="<%= dom_id car %>">
+  <p>
+    <strong>Name:</strong>
+    <%= car.name %>
+  </p>
+
+  <p>
+    <strong>Color:</strong>
+    <%= car.color %>
+  </p>
+
+  <p>
+    <strong>Model:</strong>
+    <%= car.model %>
+  </p>
+
+  <p>
+    <strong>Rental:</strong>
+    <%= car.rental %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= car.status %>
+  </p>
+
+  <p>
+    <strong>Picture:</strong>
+    <%= link_to "car pictures" , car.picture , target: :_blank%>
+  </p>
+
+</div>
