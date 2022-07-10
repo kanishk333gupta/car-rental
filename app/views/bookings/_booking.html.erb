@@ -1,32 +1,53 @@
-<div id="<%= dom_id booking %>">
-  <p>
-    <strong>Book date:</strong>
-    <%= booking.book_date %>
-  </p>
 
-  <p>
-    <strong>Return date:</strong>
-    <%= booking.return_date %>
-  </p>
+<table class = "table table-striped table-bordered table-hover table-sm">
 
-  <p>
-    <strong>Due amt:</strong>
-    <%= booking.due_amt %>
-  </p>
 
-  <p>
-    <strong>Service amt:</strong>
-    <%= booking.service_amt %>
-  </p>
+  <tbody>
+    <tr>
+      <div id="<%= dom_id booking %>">
+        <td>
+          <strong>user:</strong>
+          <%= booking.book_date %>
+        </td>
+        <td>
+          <strong>Book date:</strong>
+          <%= booking.book_date %>
+        </td>
+        <tr>
+          <strong>Return date:</strong>
+          <%= booking.return_date %>
+        </>
+        <td>
+          <strong>Due amt:</strong>
+          <%= booking.due_amt %>
+        </>
+        <td>
+          <strong>Service amt:</strong>
+          <%= booking.service_amt %>
+        </td>
+        <td>
+          <strong>User:</strong>
+          <%= booking.user_id %>
+        </td>
 
-  <p>
-    <strong>User:</strong>
-    <%= booking.user_id %>
-  </p>
+        <td>
+          <strong>Car:</strong>
+          <%= booking.car_id %>
+        </tr>
 
-  <p>
-    <strong>Car:</strong>
-    <%= booking.car_id %>
-  </p>
+      </div>
+    </tr>
+  </tbody>
+</table>
 
-</div>
+
+
+
+
+
+
+
+
+
+
+<%= link_to "All users" , '/home/index' %>

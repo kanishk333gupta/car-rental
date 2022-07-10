@@ -1,3 +1,4 @@
+=begin
 User.destroy_all
 User.create!(
   [{
@@ -154,50 +155,50 @@ User.create!(
 
 
 =begin
-  Booking.create!(
+Booking.create!(
+  [{
     [{
-      [{
-        "id": 1,
-        "book_date": "2021-07-04 17:48:06",
-        "return_date": "2022-01-19 13:16:29",
-        "due_amt": 339,
-        "service_amt": 88,
-        "user_id": 1,
-        "car_id": 1
-      }, {
-        "id": 2,
-        "book_date": "2021-07-04 06:48:35",
-        "return_date": "2021-11-19 13:35:36",
-        "due_amt": 553,
-        "service_amt": 27,
-        "user_id": 1,
-        "car_id": 1
-      }, {
-        "id": 3,
-        "book_date": "2021-07-04 00:19:28",
-        "return_date": "2022-01-07 16:18:54",
-        "due_amt": 544,
-        "service_amt": 17,
-        "user_id": 1,
-        "car_id": 1
-      }, {
-        "id": 4,
-        "book_date": "2021-07-04 08:19:09",
-        "return_date": "2022-02-01 20:25:27",
-        "due_amt": 779,
-        "service_amt": 82,
-        "user_id": 1,
-        "car_id": 1
-      }, {
-        "id": 5,
-        "book_date": "2021-07-04 11:36:22",
-        "return_date": "2022-02-12 08:32:09",
-        "due_amt": 872,
-        "service_amt": 29,
-        "user_id": 1,
-        "car_id": 1
-      }]
-      )
+      "id": 1,
+      "book_date": "2021-07-04 17:48:06",
+      "return_date": "2022-01-19 13:16:29",
+      "due_amt": 339,
+      "service_amt": 88,
+      "user_id": 1,
+      "car_id": 1
+    }, {
+      "id": 2,
+      "book_date": "2021-07-04 06:48:35",
+      "return_date": "2021-11-19 13:35:36",
+      "due_amt": 553,
+      "service_amt": 27,
+      "user_id": 1,
+      "car_id": 1
+    }, {
+      "id": 3,
+      "book_date": "2021-07-04 00:19:28",
+      "return_date": "2022-01-07 16:18:54",
+      "due_amt": 544,
+      "service_amt": 17,
+      "user_id": 1,
+      "car_id": 1
+    }, {
+      "id": 4,
+      "book_date": "2021-07-04 08:19:09",
+      "return_date": "2022-02-01 20:25:27",
+      "due_amt": 779,
+      "service_amt": 82,
+      "user_id": 1,
+      "car_id": 1
+    }, {
+      "id": 5,
+      "book_date": "2021-07-04 11:36:22",
+      "return_date": "2022-02-12 08:32:09",
+      "due_amt": 872,
+      "service_amt": 29,
+      "user_id": 1,
+      "car_id": 1
+    }]
+    )
 =end
 
 
@@ -405,6 +406,7 @@ Car.create!(
     "picture": "http://dummyimage.com/165x100.png/dddddd/000000"
   }])
 
+=begin
 Admin.destroy_all
 Admin.create!(
   [{
@@ -413,5 +415,5 @@ Admin.create!(
     "password": "123",
     "email": "admin@abc.com",
   }])
-
-p "Updated users and cars"
+=end
+p "Updated!!!"
