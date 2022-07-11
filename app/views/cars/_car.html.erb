@@ -23,10 +23,10 @@
     <strong>Status:</strong>
     <%= car.status %>
   </p>
-
+<%if current_user && current_user.admin %>
   <p>
     <strong>Picture:</strong>
     <%= car.picture %>
   </p>
-
+<%end%>
 </div>

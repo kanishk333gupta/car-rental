@@ -1,5 +1,12 @@
 # Car Rental
 
+This app uses:
+
+- Ruby version: `3.0.0p0`
+- Rails version: `Rails 7.0.3`
+- Database: `mysql`
+- Rvm: `rvm 1.29.12`
+
 ## Installation
 
 Get the database.yml and master.key file from author
@@ -14,7 +21,7 @@ Get the database.yml and master.key file from author
 
 Implement web application where customer can take rental cars with the following requirements.
 
- Requirements:
+Requirements:
 
 Admin:
 
@@ -79,4 +86,15 @@ Total amount paid by customer = Total amount to be paid at end + booking amount
 
 =====
 
-Images
+references
+`https://github.com/heartcombo/devise/issues/5439`
+
+check out
+`https://github.com/heartcombo/devise/issues/5439#issuecomment-997927041`
+
+user
+`email : test@abc.com`
+`pw : 111111`
+admin
+`email : admin@abc.com`
+`pw : 222222`
