@@ -1,32 +1,5 @@
-<div id="<%= dom_id car %>">
-  <p>
-    <strong>Name:</strong>
-    <%= car.name %>
-  </p>
-
-  <p>
-    <strong>Color:</strong>
-    <%= car.color %>
-  </p>
-
-  <p>
-    <strong>Model:</strong>
-    <%= car.model %>
-  </p>
-
-  <p>
-    <strong>Rental:</strong>
-    <%= car.rental %>
-  </p>
-
-  <p>
-    <strong>Status:</strong>
-    <%= car.status %>
-  </p>
-<%if current_user && current_user.admin %>
-  <p>
-    <strong>Picture:</strong>
-    <%= car.picture %>
-  </p>
-<%end%>
-</div>
+  <td><%= car.name %></td>
+  <td><%= car.color %></td>
+  <td><%= car.model%></td>
+  <td><%= car.rental %></td>
+  <td><%= car.status %></td>

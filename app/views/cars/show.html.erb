@@ -1,10 +1,41 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @car %>
+<table class = "table table-striped table-bordered table-hover table-sm">
+  <thead class="thead-dark">
+    <tr>
+      <th>Name</th>
+      <th>Color</th>
+      <th>Model</th>
+      <th>Rental Price (in Rs.)</th>
+      <th>Status</th>
 
-<div>
-  <%= link_to "Edit this car", edit_car_path(@car) %> |
-  <%= link_to "Back to cars", cars_path %>
+      <%if current_user.admin%>
+        <th>Delete</th>
+        <th>Edit</th>
+      <%end%>
+    </tr>
+  </thead>
+    <tr>
+      <%= render @car %>
+     
+      <%if current_user.admin%>
+        <td><%= button_to "Destroy this car", @car, method: :delete ,data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },class: 'btn btn-danger' %></td>
+        <td><%= link_to "Edit this car", edit_car_path(@car) %></td>
+      <%end%>
+    </tr>
+</table>
 
-  <%= button_to "Destroy this car", @car, method: :delete %>
+
+<div>Pictures (Placeholder)</div><br>
+<%if false%>
+<%= image_tag 'img1.png', alt: "Home"%>
+<%= image_tag 'img1.png', alt: "Home"%>
+<%= image_tag 'img1.png', alt: "Home"%>
+<%= image_tag 'img1.png', alt: "Home"%>
+<%= image_tag 'img1.png', alt: "Home"%>
+<%= image_tag 'img1.png', alt: "Home"%>
+<%end%>
+<div><br>
+<%= link_to "Back to cars", cars_path %>
+
 </div>
