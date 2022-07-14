@@ -1,8 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Cars</h1>
-
-
 <table class = "table table-striped table-bordered table-hover table-sm">
   <thead class="thead-dark">
     <tr>
@@ -15,21 +13,19 @@
 
       <%if current_user.admin%>
         <th>Delete</th>
-        <th>Edit</th>
       <%end%>
     </tr>
   </thead>
   <% @cars.each do |car| %>
     <tr>
-      <%= render car %>
-      <td><%= link_to "Show this car", car %></td>
-      <%if current_user.admin%>
-        <td><%= link_to "Delete", car, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-        </td>
-        <td><%= link_to "Edit this car", car %></td>
+        <%= render car %>
+        <td><%= link_to "Show this car", car %></td>
+        <%if current_user.admin%>
+          <td><%= link_to "Delete", car, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          </td>
+        <%end%>
       <%end%>
     </tr>
-  <% end %>
 </table>
 
 <%= link_to "Booking" , '/home/booking' %><br><br>

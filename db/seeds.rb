@@ -101,7 +101,7 @@ Booking.create!(
     )
 =end
 
-=begin
+
 Car.destroy_all
 Car.create!(
   [{
@@ -110,7 +110,7 @@ Car.create!(
     "color": "Indigo",
     "model": "X5",
     "rental": 129,
-    "status": "available",
+    "status": 1,
     "picture": "http://dummyimage.com/119x100.png/cc0000/ffffff"
   }, {
     "id": 2,
@@ -118,7 +118,7 @@ Car.create!(
     "color": "Mauv",
     "model": "Envoy XL",
     "rental": 111,
-    "status": "available",
+    "status": 1,
     "picture": "http://dummyimage.com/143x100.png/ff4444/ffffff"
   }, {
     "id": 3,
@@ -126,7 +126,7 @@ Car.create!(
     "color": "Mauv",
     "model": "Suburban 1500",
     "rental": 249,
-    "status": "available",
+    "status": 1,
     "picture": "http://dummyimage.com/147x100.png/cc0000/ffffff"
   }, {
     "id": 4,
@@ -134,7 +134,7 @@ Car.create!(
     "color": "Turquoise",
     "model": "X6 M",
     "rental": 328,
-    "status": "available",
+    "status": 1,
     "picture": "http://dummyimage.com/249x100.png/5fa2dd/ffffff"
   }, {
     "id": 5,
@@ -142,7 +142,7 @@ Car.create!(
     "color": "Violet",
     "model": "Elantra",
     "rental": 341,
-    "status": "available",
+    "status": 1,
     "picture": "http://dummyimage.com/192x100.png/dddddd/000000"
   }, {
     "id": 6,
@@ -150,7 +150,7 @@ Car.create!(
     "color": "Khaki",
     "model": "E-Series",
     "rental": 426,
-    "status": "available",
+    "status": 1,
     "picture": "http://dummyimage.com/105x100.png/dddddd/000000"
   }, {
     "id": 7,
@@ -158,7 +158,7 @@ Car.create!(
     "color": "Mauv",
     "model": "Civic",
     "rental": 307,
-    "status": "available",
+    "status": 1,
     "picture": "http://dummyimage.com/161x100.png/cc0000/ffffff"
   }, {
     "id": 8,
@@ -166,7 +166,7 @@ Car.create!(
     "color": "Red",
     "model": "Carrera GT",
     "rental": 116,
-    "status": "available",
+    "status": 1,
     "picture": "http://dummyimage.com/119x100.png/dddddd/000000"
   }, {
     "id": 9,
@@ -174,10 +174,10 @@ Car.create!(
     "color": "Orange",
     "model": "TL",
     "rental": 136,
-    "status": "available",
+    "status": 1,
     "picture": "http://dummyimage.com/124x100.png/ff4444/ffffff"
   }])
-=end
+
 =begin
 Admin.destroy_all
 Admin.create!(

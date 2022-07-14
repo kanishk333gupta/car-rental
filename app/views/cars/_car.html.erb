@@ -2,4 +2,9 @@
   <td><%= car.color %></td>
   <td><%= car.model%></td>
   <td><%= car.rental %></td>
-  <td><%= car.status %></td>
+  <%if car.status==true%>
+  <td><%="Available"%></td>
+  <%else%>
+  <td><%="Booked"%></td>
+  <%end%>
+
