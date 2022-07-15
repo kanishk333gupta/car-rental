@@ -2,11 +2,11 @@
 <div class="mx-auto" style="width: 200px;"><%=link_to "Cars" ,'/cars'%></div>
 </div>
 
-<%if current_user.admin%>
   <div class="alert alert-primary" role="alert">
   <div class="mx-auto" style="width: 200px;"><%=link_to "Bookings" ,'/bookings'%></div>
   </div>
 
+<%if current_user.admin%>
   <div class="alert alert-secondary" role="alert">
   <div class="mx-auto" style="width: 200px;"><%=link_to "Users" ,'/users'%></div>
   </div>

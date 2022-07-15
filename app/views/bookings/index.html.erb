@@ -2,13 +2,40 @@
 
 <h1>Bookings</h1>
 
-<div id="bookings">
+<table class = "table table-striped table-bordered table-hover table-sm">
+  <thead class="thead-dark">
+    <tr>
+      <th>Booking time</th>
+      <th>Return time</th>
+      <th>Booking charges (Fixed for all) </th>
+      <th>Due Amount</th>
+      <th>Service amount</th>
+      <th>Total Amount Price (in Rs.)</th>
+      <%if current_user.admin%>
+        <th>User</th>
+      <%end%>
+      <th>Car</th>
+      <th>Show</th>
+      <%if current_user.admin%>
+        <th>Delete</th>
+      <%end%>
+    </tr>
+  </thead>
+
+
   <% @bookings.each do |booking| %>
+    <tr>
     <%= render booking %>
-    <p>
-      <%= link_to "Show this booking", booking %>
-    </p>
-  <% end %>
+    <td><%= link_to "Show this car", booking %></td>
+        <%if current_user.admin%>
+          <td><%= link_to "Delete", booking, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          </td>
+        <%end%>
+      <% end %>
+    </tr>
+</table>
 </div>
+
+<br>
 
 <%= link_to "New booking", new_booking_path %>

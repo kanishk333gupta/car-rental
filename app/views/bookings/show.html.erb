@@ -1,7 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @booking %>
-
+<%= @booking.id %>
+<br>
+<%="user"%>
+<%= @booking.user_id %>
+<br>
+<%="User Email - "%>
+<%= @booking.user.email %>
 <div>
   <%= link_to "Edit this booking", edit_booking_path(@booking) %> |
   <%= link_to "Back to bookings", bookings_path %>

@@ -1,53 +1,15 @@
-
-<table class = "table table-striped table-bordered table-hover table-sm">
-
-
-  <tbody>
-    <tr>
-      <div id="<%= dom_id booking %>">
-        <td>
-          <strong>user:</strong>
-          <%= booking.book_date %>
-        </td>
-        <td>
-          <strong>Book date:</strong>
-          <%= booking.book_date %>
-        </td>
-        <tr>
-          <strong>Return date:</strong>
-          <%= booking.return_date %>
-        </>
-        <td>
-          <strong>Due amt:</strong>
-          <%= booking.due_amt %>
-        </>
-        <td>
-          <strong>Service amt:</strong>
-          <%= booking.service_amt %>
-        </td>
-        <td>
-          <strong>User:</strong>
-          <%= booking.user_id %>
-        </td>
-
-        <td>
-          <strong>Car:</strong>
-          <%= booking.car_id %>
-        </tr>
-
-      </div>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-<%= link_to "All users" , '/home/index' %>
+<td><%= booking.book_date %></td>
+<td><%= booking.return_date %></td>
+<td><%="200"%></td>
+<td><%= booking.due_amt %></td>
+<td><%= booking.service_amt %></td>
+<%amt = booking.due_amt + booking.service_amt - 200%>
+<% if amt > 0 %>
+<td><%=amt%></td>
+<%else%>
+<td> Need to pay <%=amt.abs%></td>
+<%end%>
+<%if current_user.admin %>
+  <td><%= booking.user.email %></td>
+<%end%>
+<td><%= booking.car.name %></td>
