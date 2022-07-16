@@ -98,3 +98,10 @@ user
 admin
 `email : admin@abc.com`
 `pw : 222222`
+
+Things to remember
+
+`devise_for :users`
+`resources :users`
+
+devise_for should be above users

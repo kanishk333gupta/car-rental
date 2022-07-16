@@ -9,7 +9,7 @@
       <th>Rental Price (in Rs.)</th>
       <th>Status</th>
 
-      <%if current_user.admin%>
+      <%if current_user && current_user.admin?%>
         <th>Delete</th>
         <th>Edit</th>
       <%end%>
@@ -18,7 +18,7 @@
     <tr>
       <%= render @car %>
      
-      <%if current_user.admin%>
+      <%if current_user && current_user.admin?%>
         <td><%= button_to "Destroy this car", @car, method: :delete ,data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },class: 'btn btn-danger' %></td>
         <td><%= link_to "Edit this car", edit_car_path(@car) %></td>
       <%end%>

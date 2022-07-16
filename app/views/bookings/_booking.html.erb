@@ -9,7 +9,7 @@
 <%else%>
 <td> Need to pay <%=amt.abs%></td>
 <%end%>
-<%if current_user.admin %>
+<%if current_user && current_user.admin? %>
   <td><%= booking.user.email %></td>
 <%end%>
 <td><%= booking.car.name %></td>

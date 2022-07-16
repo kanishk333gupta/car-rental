@@ -12,7 +12,7 @@
       <th>username</th>
       <th>Show</th>
 
-      <%if current_user.admin%>
+      <%if current_user && current_user.admin?%>
         <th>Delete</th>
       <%end%>
     </tr>
@@ -21,12 +21,12 @@
     <tr>
         <%= render car %>
         <td><%= link_to "Show this car", car %></td>
-        <%if current_user.admin%>
+        <%if current_user && current_user.admin?%>
           <td><%= link_to "Delete", car, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
           </td>
         <%end%>
-      <%end%>
     </tr>
+  <%end%>
 </table>
 
 <%= link_to "Booking" , '/home/booking' %><br><br>

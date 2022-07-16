@@ -1,3 +1,18 @@
+
+<br>
+<br>
+<%= @user.user_name %>
 <br>
 <%= @user.email %>
+<br>
+<br>
+<% if @user.admin %>
+  <%= "Admin"  %>
+<% else %>
+  <%= "Customer" %>
+<% end %>
 
+
+
+
+<p> Currently not working <%= link_to "Edit this user ", edit_user_path(@user) %></p>

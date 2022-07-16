@@ -5,5 +5,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   include Username
-  has_one :booking , dependent: :destroy
+  has_many :booking , dependent: :destroy
+
 end

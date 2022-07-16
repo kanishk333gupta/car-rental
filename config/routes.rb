@@ -1,17 +1,7 @@
 Rails.application.routes.draw do
   resources :bookings
-  devise_for :users
   resources :cars
+  devise_for :users
   resources :users
-
-
-
-
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # get 'home/booking'
-  # get 'car/index'
-  # end
   root "home#index"
 end
