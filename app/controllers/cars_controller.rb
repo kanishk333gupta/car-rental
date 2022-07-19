@@ -1,5 +1,5 @@
 class CarsController < ApplicationController
-  before_action :set_car, only: %i[ show edit update destroy ]
+  before_action :set_car, only: %i[ show edit update destroy]
   before_action :authenticate_user!
 
 
@@ -58,6 +58,7 @@ class CarsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
 
 
   private

@@ -8,4 +8,11 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  def bookstatus
+    unless !@booking.car.status?
+      flash[:alert] = "You must be an ADMIN to access this section"
+      redirect_to bookings_path
+    end
+  end
 end

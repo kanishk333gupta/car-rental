@@ -8,7 +8,9 @@
       <th>Model</th>
       <th>Rental Price (in Rs.)</th>
       <th>Status</th>
-
+      <%if current_user && !current_user.admin?%>
+        <th>Rent</th>
+      <% end %>
       <%if current_user && current_user.admin?%>
         <th>Delete</th>
         <th>Edit</th>
@@ -17,7 +19,11 @@
   </thead>
     <tr>
       <%= render @car %>
-     
+      <%if @car.status==false && !current_user.admin?%>
+        <td>Sorry car is already booked</td>
+      <% elsif @car.status==true && !current_user.admin?%>
+        <td><%=link_to "Rent car",book_path(@car.id)%></td>
+      <% end %>
       <%if current_user && current_user.admin?%>
         <td><%= button_to "Destroy this car", @car, method: :delete ,data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },class: 'btn btn-danger' %></td>
         <td><%= link_to "Edit this car", edit_car_path(@car) %></td>

@@ -3,8 +3,8 @@
   <td><%= car.model%></td>
   <td><%= car.rental %></td>
   <%if car.status==true%>
-  <td><%="Available"%></td>
+    <td><%="Available"%></td>
   <%else%>
-  <td><%="Booked"%></td>
+    <td><%="Booked"%> by <%= current_user.user_name%></td>
   <%end%>
-<td>Booked by <%= current_user.user_name%></td>
+

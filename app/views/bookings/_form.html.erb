@@ -32,13 +32,11 @@
   </div>
 
   <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
   <div>
-    <%= form.label :car_id, style: "display: block" %>
-    <%= form.text_field :car_id %>
+    <%= form.hidden_field :car_id, value: params[:id]  %>
   </div>
 
   <div>

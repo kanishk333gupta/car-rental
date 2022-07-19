@@ -5,8 +5,13 @@
 <%="user"%>
 <%= @booking.user_id %>
 <br>
-<%="User Email - "%>
+<%="User Email "%><br>
 <%= @booking.user.email %>
+<br>
+<%="User car booked "%><br>
+<%= @booking.car.name %>
+
+
 <div>
   <%= link_to "Edit this booking", edit_booking_path(@booking) %> |
   <%= link_to "Back to bookings", bookings_path %>

@@ -9,8 +9,11 @@
       <th>Model</th>
       <th>Rental Price (in Rs.)</th>
       <th>Status</th>
-      <th>username</th>
-      <th>Show</th>
+       <%if current_user && current_user.admin?%>
+        <th>Show</th>
+      <%else%>
+        <th>Rent</th>
+      <%end%>
 
       <%if current_user && current_user.admin?%>
         <th>Delete</th>
@@ -20,10 +23,16 @@
   <% @cars.each do |car| %>
     <tr>
         <%= render car %>
-        <td><%= link_to "Show this car", car %></td>
+        <%if current_user && current_user.admin?%>
+          <td><%= link_to "Show this car", car %></td>
+        <%else%>
+          <td><%= link_to "Rent this car", car %></td>
+        <%end%>
         <%if current_user && current_user.admin?%>
           <td><%= link_to "Delete", car, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
           </td>
+
+          
         <%end%>
     </tr>
   <%end%>
