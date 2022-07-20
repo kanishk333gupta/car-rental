@@ -10,6 +10,7 @@ class CarsController < ApplicationController
 
   # GET /cars/1 or /cars/1.json
   def show
+    @bookings=@car.bookings.all
   end
 
   # GET /cars/new

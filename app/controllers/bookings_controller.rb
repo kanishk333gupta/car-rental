@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: %i[ show edit update destroy ]
   before_action :verify_is_admin , except: [:show, :index, :create, :new ]
-  before_action :bookstatus , except: [:show, :index,]
+
 
   # GET /bookings or /bookings.json
   def index
@@ -62,6 +62,7 @@ class BookingsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

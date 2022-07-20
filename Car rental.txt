@@ -19,7 +19,7 @@ Admin:
 Customer:
 
 •	As a Customer I should land on customer login dashboard page.
-•	As an Customer I should be able to login to customer dashboard using the credentials (Email & Password).
+•	As a Customer I should be able to login to customer dashboard using the credentials (Email & Password).
 •	After login Customer should see all the available cars.
 •	Customer can see the car details and book the car on his required dates.
 •	Customer can also book multiple cars at a time.

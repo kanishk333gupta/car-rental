@@ -1,9 +1,23 @@
 <td><%= booking.book_date %></td>
 <td><%= booking.return_date %></td>
 <td><%="200"%></td>
+<%booking.due_amt=50*(booking.return_date.to_time-booking.book_date.to_time)/60/60%>
 <td><%= booking.due_amt %></td>
-<td><%= booking.service_amt %></td>
-<%amt = booking.due_amt + booking.service_amt - 200%>
+<% if current_user.admin? %>
+  <%= form_with(model: booking) do |form| %>
+  <td>
+      <%= form.number_field :service_amt %>
+      <%= form.submit %>
+  </td>
+  <% end %>
+<% else %>
+  <td> <%=booking.service_amt %> </td>
+<% end %>
+<% if booking.service_amt %>
+  <%amt = booking.due_amt + booking.service_amt - 200%>
+  <% else %>
+  <%amt = booking.due_amt - 200%>
+<% end %>
 <% if amt > 0 %>
 <td><%=amt%></td>
 <%else%>
