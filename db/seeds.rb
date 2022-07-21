@@ -106,24 +106,5 @@ Car.create!(
   }])
 
 Booking.destroy_all
-Booking.create!(
-    [{
-      "id": 1,
-      "book_date": "2021-07-04 17:48:06",
-      "return_date": "2022-01-19 13:16:29",
-      "due_amt": 0,
-      "service_amt": 0,
-      "user_id": 1,
-      "car_id": 1
-    }, {
-      "id": 2,
-      "book_date": "2021-07-04 06:48:35",
-      "return_date": "2021-11-19 13:35:36",
-      "due_amt": 0,
-      "service_amt": 0,
-      "user_id": 1,
-      "car_id": 2
-    }]
-    )
 
 p "Updated!!!"

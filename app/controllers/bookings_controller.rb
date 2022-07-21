@@ -33,6 +33,7 @@ class BookingsController < ApplicationController
       if @booking.save
         format.html { redirect_to booking_url(@booking), notice: "Booking was successfully created." }
         format.json { render :show, status: :created, location: @booking }
+          Car.find_by(id:@booking.car_id ).update(status: false )
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
@@ -61,6 +62,10 @@ class BookingsController < ApplicationController
       format.html { redirect_to bookings_url, notice: "Booking was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def back
+    
   end
 
 

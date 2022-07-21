@@ -1,5 +1,14 @@
+
 <td><%= booking.book_date %></td>
-<td><%= booking.return_date %></td>
+ <%if booking.car.status==false && !current_user.admin?%>
+  <%= form_with(model: booking) do |form| %>
+  <td>
+      <%= form.datetime_field :service_amt %>
+      <%= form.submit %>
+      <%= booking.return_date %>
+  </td>
+  <% end %>
+<% end %>
 <td><%="200"%></td>
 <%booking.due_amt=50*(booking.return_date.to_time-booking.book_date.to_time)/60/60%>
 <td><%= booking.due_amt %></td>
@@ -25,5 +34,5 @@
 <%end%>
 <%if current_user && current_user.admin? %>
   <td><%= booking.user.email %></td>
+  <td><%= booking.car.name %></td>
 <%end%>
-<td><%= booking.car.name %></td>

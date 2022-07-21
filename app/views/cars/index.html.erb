@@ -26,7 +26,11 @@
         <%if current_user && current_user.admin?%>
           <td><%= link_to "Show this car", car %></td>
         <%else%>
+        <% if car.status %>
           <td><%= link_to "Rent this car", car %></td>
+        <% else %>
+          <td><%= link_to "Return Car", car %></td>
+        <% end %>
         <%end%>
         <%if current_user && current_user.admin?%>
           <td><%= link_to "Delete", car, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
@@ -38,5 +42,4 @@
   <%end%>
 </table>
 
-<%= link_to "Booking" , '/home/booking' %><br><br>
 <%= link_to "New car", new_car_path %>

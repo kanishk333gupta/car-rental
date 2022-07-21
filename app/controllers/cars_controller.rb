@@ -1,5 +1,5 @@
 class CarsController < ApplicationController
-  before_action :set_car, only: %i[ show edit update destroy]
+  before_action :set_car, only: %i[ show edit update destroy update_status]
   before_action :authenticate_user!
 
 
@@ -12,6 +12,7 @@ class CarsController < ApplicationController
   def show
     @bookings=@car.bookings.all
   end
+
 
   # GET /cars/new
   def new
@@ -60,7 +61,26 @@ class CarsController < ApplicationController
     end
   end
   
+  def update_status
+    @car.update(status: params[:status])
+    redirect_to @car , notice: "Chnge status"
+  end
 
+
+  # def action
+  #   if params[:checkout_btn]
+  #     redirect_to beforecheckout_car_url(id: @car.id)
+  #   end
+  # end
+
+
+  # def beforecheckout
+  #   if @car.status == true 
+  #     @car.status = false 
+  #   else 
+  #     @car.status =false
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

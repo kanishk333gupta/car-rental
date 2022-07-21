@@ -8,7 +8,7 @@
       <th>Model</th>
       <th>Rental Price (in Rs.)</th>
       <th>Status</th>
-      <%if current_user && !current_user.admin?%>
+      <%if current_user && !current_user.admin? && @car.status%>
         <th>Rent</th>
       <% end %>
       <%if current_user && current_user.admin?%>
@@ -19,10 +19,10 @@
   </thead>
     <tr>
       <%= render @car %>
-      <%if @car.status==false && !current_user.admin?%>
-        <td>Sorry car is already booked</td>
-      <% elsif @car.status==true && !current_user.admin?%>
+
+      <% if @car.status==true && !current_user.admin?%>
         <td><%=link_to "Rent car",book_path(@car.id)%></td>
+
       <% end %>
       <%if current_user && current_user.admin?%>
         <td><%= button_to "Destroy this car", @car, method: :delete ,data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },class: 'btn btn-danger' %></td>
@@ -32,8 +32,44 @@
 </table>
 
 
+
+
+  <%if @car.status==false && !current_user.admin?%>
+    <h1>Booking history</h1><br>
+    <table class = "table table-striped table-bordered table-hover table-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th>Booking time</th>
+          <th>Return time</th>
+          <th>Booking charges (Fixed for all) </th>
+          <th>Due Amount</th>
+          <th>Service amount</th>
+          <th>Total Amount Price (in Rs.)</th>
+          <%if current_user.admin%>
+            <th>User</th>
+          <%end%>
+          <%if current_user.admin%>
+            <th>Car</th>
+          <%end%>
+        </tr>
+      </thead>
+      <% @bookings.each do |booking| %>
+        <tr>
+            <%= render booking %>
+          <% end %>
+        </tr>
+    </table>
+  <% end %>
+
+
+
+
+
+
+
+
 <div>Pictures (Placeholder)</div><br>
-<%if true%>
+<%if false%>
 <%= image_tag 'img1.png', alt: "Home"%>
 <%= image_tag 'img1.png', alt: "Home"%>
 <%= image_tag 'img1.png', alt: "Home"%>
