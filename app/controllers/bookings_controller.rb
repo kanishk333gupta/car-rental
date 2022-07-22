@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: %i[ show edit update destroy ]
-  before_action :verify_is_admin , except: [:show, :index, :create, :new ]
+  before_action :verify_is_admin , except: [:show, :index, :create, :new, :update ,:edit]
 
 
   # GET /bookings or /bookings.json
@@ -28,12 +28,19 @@ class BookingsController < ApplicationController
   # POST /bookings or /bookings.json
   def create
     @booking = Booking.new(booking_params)
-
     respond_to do |format|
       if @booking.save
         format.html { redirect_to booking_url(@booking), notice: "Booking was successfully created." }
         format.json { render :show, status: :created, location: @booking }
+        
+        
+        if(Car.find_by(id:@booking.car_id ).status==false)
+          Car.find_by(id:@booking.car_id ).update(status: true )
+        else
           Car.find_by(id:@booking.car_id ).update(status: false )
+        end
+     
+     
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @booking.errors, status: :unprocessable_entity }
@@ -47,6 +54,9 @@ class BookingsController < ApplicationController
       if @booking.update(booking_params)
         format.html { redirect_to booking_url(@booking), notice: "Booking was successfully updated." }
         format.json { render :show, status: :ok, location: @booking }
+  #check this out ============================================================================================================
+        Car.find_by(id:@booking.car_id ).update(status: true )
+  #check this out ============================================================================================================
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @booking.errors, status: :unprocessable_entity }

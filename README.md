@@ -1,5 +1,12 @@
 # Car Rental
 
+user
+`email : test@abc.com`
+`pw : 111111`
+admin
+`email : admin@abc.com`
+`pw : 222222`
+
 This app uses:
 
 - Ruby version: `3.0.0p0`
@@ -91,13 +98,6 @@ references
 
 check out
 `https://github.com/heartcombo/devise/issues/5439#issuecomment-997927041`
-
-user
-`email : test@abc.com`
-`pw : 111111`
-admin
-`email : admin@abc.com`
-`pw : 222222`
 
 Things to remember
 

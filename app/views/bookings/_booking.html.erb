@@ -1,27 +1,52 @@
-
 <td><%= booking.book_date %></td>
- <%if booking.car.status==false && !current_user.admin?%>
+
+ <%if  booking.car.status==false && !current_user.admin?%>
   <%= form_with(model: booking) do |form| %>
   <td>
-      <%= form.datetime_field :service_amt %>
+      <%= form.datetime_field :return_date %>
       <%= form.submit %>
-      <%= booking.return_date %>
   </td>
   <% end %>
+  <% else %>
+  <td><%= booking.return_date %></td>
+
 <% end %>
 <td><%="200"%></td>
 <%booking.due_amt=50*(booking.return_date.to_time-booking.book_date.to_time)/60/60%>
-<td><%= booking.due_amt %></td>
+
+
+
+
 <% if current_user.admin? %>
   <%= form_with(model: booking) do |form| %>
   <td>
-      <%= form.number_field :service_amt %>
-      <%= form.submit %>
+      <%= form.number_field :due_amt ,class: 'form-control' %><br>
+       <%= form.submit class:'btn btn-primary' %>
+  </td>
+  <% end %>
+<% else %>
+  <td> <%=booking.due_amt %> </td>
+<% end %>
+
+<% if !booking.service_amt %>
+  <% booking.service_amt=0 %>
+<% end %>
+
+<% if current_user.admin? %>
+  <%= form_with(model: booking) do |form| %>
+  <td>
+      <%= form.number_field :service_amt ,class: 'form-control' %><br>
+       <%= form.submit class:'btn btn-primary' %>
   </td>
   <% end %>
 <% else %>
   <td> <%=booking.service_amt %> </td>
 <% end %>
+
+
+
+
+
 <% if booking.service_amt %>
   <%amt = booking.due_amt + booking.service_amt - 200%>
   <% else %>

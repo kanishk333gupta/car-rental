@@ -8,8 +8,11 @@
       <th>Model</th>
       <th>Rental Price (in Rs.)</th>
       <th>Status</th>
+
       <%if current_user && !current_user.admin? && @car.status%>
         <th>Rent</th>
+        <% else %>
+        <th>Return</th>
       <% end %>
       <%if current_user && current_user.admin?%>
         <th>Delete</th>
@@ -22,6 +25,20 @@
 
       <% if @car.status==true && !current_user.admin?%>
         <td><%=link_to "Rent car",book_path(@car.id)%></td>
+
+
+      <% else %>
+
+
+
+      <%= form_with(model: @car) do |form| %>
+  <td>
+      <%= form.select :status, [['Return' ,1], ['Keep it with you' ,0]] %><br>
+       <%= form.submit class:'btn btn-primary' %>
+  </td>
+  <% end %>
+
+
 
       <% end %>
       <%if current_user && current_user.admin?%>

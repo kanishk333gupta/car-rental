@@ -26,6 +26,7 @@
   <% @bookings.each do |booking| %>
     <tr>
     <%= render booking %>
+    <td><%= booking.car.name %></td>
     <td><%= link_to "Show this car", booking %></td>
         <%if current_user.admin%>
           <td><%= link_to "Delete", booking, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
