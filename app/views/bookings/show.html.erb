@@ -17,4 +17,6 @@
   <%= link_to "Back to bookings", bookings_path %>
 
   <%= button_to "Destroy this booking", @booking, method: :delete %>
+
+  <p><%=link_to "Booking download (PDF)" ,booking_path(@booking,format: "pdf")%></p>
 </div>

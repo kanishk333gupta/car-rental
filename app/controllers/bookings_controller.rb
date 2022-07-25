@@ -14,6 +14,13 @@ class BookingsController < ApplicationController
 
   # GET /bookings/1 or /bookings/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = BookingPdf.new(@booking)
+        send_data pdf.render, filename: "Booking #{@booking.id}.pdf", type: 'application/pdf', disposition: 'inline' ,target: '_blank'
+      end
+    end
   end
 
   # GET /bookings/new
