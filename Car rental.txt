@@ -54,27 +54,3 @@ Add Challenges:
 3.	We're also interested in understanding how you make assumptions when building software
 4.	Please use Git for version control and add frequent commits. This will help us understand how you built the solution
 5.	Please provide a README file with your solution with instructions to setup/run the solution.
-
-
-
-
-
-## Formulas to be used
-
-1 . For Amount
-
-t = Total time a car is used (mins)
-r = total km it's running
-Booking amount = Paid at initial (Depends on type of car)
-
-Amount depends on t,r
-Due amount = Amount to be paid after completion
-Due amount = t X Rs.1 + r X Rs.10
-
-Maintenance charge = Depends on type of damage
-Total amount to be paid at end = Maintenance charge + ( Due amount - Booking amount )
-Total amount paid by customer = Total amount to be paid at end + booking amount
-
-=====
-
-Images

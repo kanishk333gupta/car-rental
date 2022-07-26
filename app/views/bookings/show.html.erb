@@ -11,6 +11,15 @@
 <%="User car booked "%><br>
 <%= @booking.car.name %>
 
+<%=" date return "%><br>
+<%= @booking.return_date %>
+<br>
+<%=" Booking kilometer == "%>
+<%= @booking.kilometer %>
+
+<%=" Booking due amt == "%>
+<%= @booking.due_amt %>
+
 
 <div>
   <%= link_to "Edit this booking", edit_booking_path(@booking) %> |

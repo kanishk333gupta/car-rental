@@ -1,63 +1,65 @@
-<td><%= booking.book_date %></td>
-
- <%if  booking.car.status==false && !current_user.admin?%>
-  <%= form_with(model: booking) do |form| %>
-  <td>
-      <%= form.datetime_field :return_date %>
-      <%= form.submit %>
-  </td>
-  <% end %>
-  <% else %>
-  <td><%= booking.return_date %></td>
-
+<% if !booking.kilometer %>
+  <% booking.kilometer = 0 %>
 <% end %>
-<td><%="200"%></td>
-<%booking.due_amt=50*(booking.return_date.to_time-booking.book_date.to_time)/60/60%>
 
-
-
-
-<% if current_user.admin? %>
-  <%= form_with(model: booking) do |form| %>
-  <td>
-      <%= form.number_field :due_amt ,class: 'form-control' %><br>
-       <%= form.submit class:'btn btn-primary' %>
-  </td>
-  <% end %>
-<% else %>
-  <td> <%=booking.due_amt %> </td>
-<% end %>
+<%booking.due_amt=booking.car.rental*(booking.return_date.to_time-booking.book_date.to_time)/60/60%>
 
 <% if !booking.service_amt %>
   <% booking.service_amt=0 %>
 <% end %>
 
-<% if current_user.admin? %>
-  <%= form_with(model: booking) do |form| %>
-  <td>
-      <%= form.number_field :service_amt ,class: 'form-control' %><br>
-       <%= form.submit class:'btn btn-primary' %>
-  </td>
-  <% end %>
-<% else %>
-  <td> <%=booking.service_amt %> </td>
-<% end %>
 
+<%= form_with(model: booking) do |form| %>
+  <td><%= booking.book_date %></td>
 
-
-
-
-<% if booking.service_amt %>
-  <%amt = booking.due_amt + booking.service_amt - 200%>
+  <%if  booking.car.status==false && !current_user.admin?%>
+    <td><%= form.datetime_field :return_date %></td>
   <% else %>
-  <%amt = booking.due_amt - 200%>
+    <td><%= booking.return_date %></td>
+  <% end %>
+
+  <td><%= form.number_field :kilometer ,class: 'form-control' %><br></td>
+
+  <% if current_user.admin? %>
+    <td><%= form.number_field :due_amt ,class: 'form-control' %> </td>
+  <% else %>
+    <td> <%=booking.due_amt %> </td>
+  <% end %>
+
+  <% if current_user.admin? %>
+    <td><%= form.number_field :service_amt ,class: 'form-control' %><br></td>
+  <% else %>
+    <td> <%=booking.service_amt %> </td>
+  <% end %>
+
+  <td><%="200"%></td>
+
+  <% if true %>
+  <% if booking.service_amt %>
+      <%amt = booking.due_amt + booking.service_amt - 200%>
+    <% else %>
+      <%amt = booking.due_amt - 200%>
+  <% end %>
+
+  <% if booking.kilometer < 329 %>
+    <% amt = amt - 0.02*amt %>
+  <% elsif booking.kilometer > 330 && booking.kilometer < 739 %>
+    <% amt = amt - 0.05*amt %>
+  <% else %>
+    <% amt = amt - 0.1*amt %>
+  <% end %>
+
+  <% if amt > 0 %>
+    <td><%=amt%></td>
+  <%else%>
+    <td> Need to pay <%=amt.abs%></td>
+  <%end%>
+  <% end %>
+
+  <%if current_user && current_user.admin? %>
+    <td><%= booking.user.email %></td>
+  <%end%>
+
+  <td><%= form.submit class:'btn btn-primary' %></td>
+
 <% end %>
-<% if amt > 0 %>
-<td><%=amt%></td>
-<%else%>
-<td> Need to pay <%=amt.abs%></td>
-<%end%>
-<%if current_user && current_user.admin? %>
-  <td><%= booking.user.email %></td>
-  <td><%= booking.car.name %></td>
-<%end%>

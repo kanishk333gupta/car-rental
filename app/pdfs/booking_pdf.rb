@@ -8,7 +8,7 @@ class BookingPdf < Prawn::Document
 
   def initialize(booking)
     super()
-    # stroke_axis
+    stroke_axis
     stroke do
       rectangle [0, 725], 540, 730
     end
@@ -57,19 +57,45 @@ class BookingPdf < Prawn::Document
   end
 
   def cardetails(booking)
-    if !booking.service_amt
+    if !booking.service_amt || !booking.due_amt
       booking.service_amt = 0 
+      booking.due_amt = 0 
     end
     final_amt = booking.due_amt + booking.service_amt - 200 
+
+     if (booking.kilometer < 329)
+      final_amt = final_amt - 0.02*final_amt
+    elsif (booking.kilometer > 330 && booking.kilometer < 739)
+      final_amt = final_amt - 0.05*final_amt 
+    else 
+      final_amt = final_amt - 0.1*final_amt 
+    end 
+  
     text_box "<b><font size='22'>" + "Car Renting details</font></b>", :inline_format => true  ,:at =>[Initial_x,cursor]
     move_down 60
-    table([ ["Booking ID", "Car Name", "Car Color", "Car model", "Booking Initial Payment" , "Due amount" ,"Maintenance Charge"],
-    [booking.id, booking.car.name, booking.car.color ,booking.car.model , "200" , booking.due_amt , booking.service_amt]])  
+    table([ ["ID", "Name", "Color", "Model","Kilometers Run", "Initial Payment" , "Due amount" ,"Maintenance Charge"],
+    [booking.id, booking.car.name, booking.car.color ,booking.car.model , booking.kilometer ,"200" , booking.due_amt , booking.service_amt]])  
     move_down Lineheight_y
-    text_box  "<b> Total Payment to be done in</b> Rs. #{final_amt}", :inline_format => true ,:at =>[300,290]
-    line [290, 300], [520, 300] 
-    line [290, 270], [520, 270] 
+    if booking.kilometer < 200
+      text_box  "Note:  #{booking.kilometer} Kilometers will give 2% discount", :inline_format => true ,:at =>[15,350]
+    elsif booking.kilometer < 330
+      text_box  "Note:  #{booking.kilometer} Kilometers will give 2% discount", :inline_format => true ,:at =>[15,350]
+    else 
+      text_box  "Note:  #{booking.kilometer} Kilometers will give 2% discount", :inline_format => true ,:at =>[15,350]
+    end
+
+    text_box  "<b> Total Payment to be done in</b> Rs. #{final_amt}", :inline_format => true ,:at =>[120,290]
+    line [30, 300], [520, 300] 
+    line [30, 270], [520, 270] 
     stroke 
+
+    text_box  "<font size='8'>" + "NOTE :
+                •	Discount offers of 2% for Total kms run below 200 km.
+                •	5% for Total kms run below 330 km.
+                • 10% for Total kms run above 740 km. </font>", :inline_format => true ,:at =>[15,170]
+
+
+
   end
   
   def footer(booking)

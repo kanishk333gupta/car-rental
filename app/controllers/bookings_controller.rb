@@ -94,6 +94,6 @@ class BookingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def booking_params
-      params.require(:booking).permit(:book_date, :return_date, :due_amt, :service_amt, :user_id, :car_id)
+      params.require(:booking).permit(:book_date, :return_date, :due_amt, :service_amt, :user_id, :car_id, :kilometer)
     end
 end

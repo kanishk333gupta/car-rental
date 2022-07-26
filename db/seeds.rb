@@ -85,7 +85,7 @@ Car.create!(
     "color": "Mauv",
     "model": "Civic",
     "rental": 307,
-    "status": 0,
+    "status": 1,
     "picture": "http://dummyimage.com/161x100.png/cc0000/ffffff"
   }, {
     "id": 8,
@@ -93,7 +93,7 @@ Car.create!(
     "color": "Red",
     "model": "Carrera GT",
     "rental": 116,
-    "status": 0,
+    "status": 1,
     "picture": "http://dummyimage.com/119x100.png/dddddd/000000"
   }, {
     "id": 9,
@@ -101,7 +101,7 @@ Car.create!(
     "color": "Orange",
     "model": "TL",
     "rental": 136,
-    "status": 0,
+    "status": 1,
     "picture": "http://dummyimage.com/124x100.png/ff4444/ffffff"
   }])
 
