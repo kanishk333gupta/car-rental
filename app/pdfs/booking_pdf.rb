@@ -8,7 +8,7 @@ class BookingPdf < Prawn::Document
 
   def initialize(booking)
     super()
-    stroke_axis
+    # stroke_axis
     stroke do
       rectangle [0, 725], 540, 730
     end
@@ -57,9 +57,10 @@ class BookingPdf < Prawn::Document
   end
 
   def cardetails(booking)
-    if !booking.service_amt || !booking.due_amt
+    if !booking.service_amt || !booking.due_amt || !booking.kilometer
       booking.service_amt = 0 
       booking.due_amt = 0 
+      booking.kilometer = 0
     end
     final_amt = booking.due_amt + booking.service_amt - 200 
 

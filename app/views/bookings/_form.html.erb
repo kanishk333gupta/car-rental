@@ -25,10 +25,14 @@
     <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
+
   <div>
     <%= form.hidden_field :car_id, value: params[:id]  %>
   </div>
 
+ <div>
+    <%= form.label :car_id, value: params[:id]  %>
+  </div>
   <div>
     <%= form.submit %>
   </div>

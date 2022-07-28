@@ -1,6 +1,8 @@
 class CarsController < ApplicationController
-  before_action :set_car, only: %i[ show edit update destroy update_status]
+  before_action :set_car, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
+  before_action :verify_is_admin , except: [:show, :index, :update]
+  # before_action :correct_user
 
 
   # GET /cars or /cars.json
@@ -11,6 +13,8 @@ class CarsController < ApplicationController
   # GET /cars/1 or /cars/1.json
   def show
     @bookings=@car.bookings.all
+    @bookings = Booking.where(user_id: current_user.id)
+    # @booking = 
   end
 
 
@@ -61,10 +65,10 @@ class CarsController < ApplicationController
     end
   end
   
-  def update_status
-    @car.update(status: params[:status])
-    redirect_to @car , notice: "Chnge status"
-  end
+  # def update_status
+  #   @car.update(status: params[:status])
+  #   redirect_to @car , notice: "Chnge status"
+  # end
 
 
   # def action
@@ -82,6 +86,14 @@ class CarsController < ApplicationController
   #   end
   # end
 
+#   def correct_user
+#     # if !current_user.admin?
+#     @car = current_user.cars.find_by(id: params[:id])
+#     redirect_to cars_path, notice: "Not Authorized To Edit This Friend" if @car.nil?
+#   # end
+# end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_car
@@ -90,6 +102,6 @@ class CarsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def car_params
-      params.require(:car).permit(:name, :color, :model, :rental, :status, :picture)
+      params.require(:car).permit(:name, :color, :model, :rental, :status, :picture , images: [])
     end
 end

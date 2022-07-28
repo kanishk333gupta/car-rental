@@ -28,6 +28,10 @@ User.create!(
     :password => "111111"
   }]
 )
+=begin
+  
+
+  
 
 Car.destroy_all
 Car.create!(
@@ -104,6 +108,8 @@ Car.create!(
     "status": 1,
     "picture": "http://dummyimage.com/124x100.png/ff4444/ffffff"
   }])
+
+=end
 
 Booking.destroy_all
 

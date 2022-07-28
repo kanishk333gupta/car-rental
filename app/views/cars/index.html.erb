@@ -8,7 +8,6 @@
       <th>Color</th>
       <th>Model</th>
       <th>Rental Price (in Rs.)</th>
-      <th>Status</th>
        <%if current_user && current_user.admin?%>
         <th>Show</th>
       <%else%>
@@ -18,11 +17,13 @@
       <%if current_user && current_user.admin?%>
         <th>Delete</th>
       <%end%>
+      <th>Status</th>
     </tr>
   </thead>
   <% @cars.each do |car| %>
     <tr>
       <%= render car %>
+       
         <%if current_user && current_user.admin?%>
           <td><%= link_to "Show this car", car %></td>
         <%else%>
@@ -36,6 +37,11 @@
           <td><%= link_to "Delete", car, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
           </td>
         <%end%>
+        <%if car.status==true%>
+          <td><%="Available"%></td>
+        <%else%>
+          <td><%="Booked"%></td>
+        <% end %>
     </tr>
   <%end%>
 </table>

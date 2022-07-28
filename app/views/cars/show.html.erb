@@ -7,7 +7,7 @@
       <th>Color</th>
       <th>Model</th>
       <th>Rental Price (in Rs.)</th>
-      <th>Status</th>
+      <%# <th>Status</th> %>
 
       <%if current_user && !current_user.admin? && @car.status%>
         <th>Rent</th>
@@ -29,15 +29,19 @@
 
       <% else %>
 
-
-
+<% @correct = Booking.last %>
+<%# CHECK THIS OUT ++++++++++++++++++++++++++++++++++++++++++++++++++++ %>
+<% if current_user.id == @correct.user.id %>
       <%= form_with(model: @car) do |form| %>
   <td>
       <%= form.select :status, [['Return' ,1], ['Keep it with you' ,0]] %><br>
        <%= form.submit class:'btn btn-primary' %>
   </td>
   <% end %>
+  <% else %>
+  <td><% @car.status %></td>
 
+<% end %>
 
 
       <% end %>
@@ -58,15 +62,17 @@
         <tr>
           <th>Booking time</th>
           <th>Return time</th>
-          <th>Booking charges (Fixed for all) </th>
+          <th>Kilometers</th>
           <th>Due Amount</th>
           <th>Service amount</th>
+          <th>Booking charges </th>
           <th>Total Amount Price (in Rs.)</th>
           <%if current_user.admin%>
             <th>User</th>
           <%end%>
+          <th>Update</th>
           <%if current_user.admin%>
-            <th>Car</th>
+            <th>Delete</th>
           <%end%>
         </tr>
       </thead>
@@ -85,16 +91,20 @@
 
 
 
-<div>Pictures (Placeholder)</div><br>
-<%if false%>
-<%= image_tag 'img1.png', alt: "Home"%>
-<%= image_tag 'img1.png', alt: "Home"%>
-<%= image_tag 'img1.png', alt: "Home"%>
-<%= image_tag 'img1.png', alt: "Home"%>
-<%= image_tag 'img1.png', alt: "Home"%>
-<%= image_tag 'img1.png', alt: "Home"%>
-<%end%>
-<div><br>
+<div >
+  <%if true%>
+    <% @car.images.each do |car_img| %>
+        <%= image_tag url_for(car_img) ,width: "444px" ,height:"270px" ,class: "rounded"%>
+    <% end %>
+  <%end%>
+</div>
+
+
+
+</br>
+</br>
+
+
 
 <div>
 
@@ -108,16 +118,15 @@
     <tr>
       <th>Booking time</th>
       <th>Return time</th>
-      <th>Booking charges (Fixed for all) </th>
+      <th>Kilometers</th>
       <th>Due Amount</th>
       <th>Service amount</th>
+      <th>Booking charges </th>
       <th>Total Amount Price (in Rs.)</th>
       <%if current_user.admin%>
         <th>User</th>
       <%end%>
-      <%if current_user.admin%>
-        <th>Car</th>
-      <%end%>
+      <th>Update</th>
     </tr>
   </thead>
 

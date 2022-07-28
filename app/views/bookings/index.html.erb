@@ -28,6 +28,7 @@
   <% @bookings.each do |booking| %>
     <tr>
     <%= render booking %>
+    
     <td><%= booking.car.name %></td>
     <td><%= link_to "Show this car", booking %></td>
         <%if current_user.admin%>

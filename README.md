@@ -2,8 +2,7 @@
 
 user
 `email : guy@abc.com`
-`pw : 111111`
-
+`pw : 111111`  
 admin
 `email : admin@abc.com`
 `pw : 222222`
@@ -29,11 +28,11 @@ Get the database.yml and master.key file from author
 
 ![App Screenshot](https://github.com/kanishk333gupta/Car-Rental/blob/main/img/Screenshot%202022-07-04%20at%2010.17.51%20AM.png?raw=true)
 
-![App Screenshot](https://github.com/kanishk333gupta/Car-Rental/blob/main/img/Screenshot%202022-07-04%20at%2010.26.25%20AM.png?raw=true)
+![App Screenshot](https://github.com/kanishk333gupta/car-rental/blob/main/img/Screenshot%202022-07-22%20at%204.40.40%20PM.png?raw=true)
 
-Things to remember
+### Things to remember
 
-`devise_for :users`
+`devise_for :users`  
 `resources :users`
 
 devise_for should be above users

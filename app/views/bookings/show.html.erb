@@ -27,5 +27,5 @@
 
   <%= button_to "Destroy this booking", @booking, method: :delete %>
 
-  <p><%=link_to "Booking download (PDF)" ,booking_path(@booking,format: "pdf")%></p>
+  <p><%=link_to "Booking download (PDF)" ,booking_path(@booking,format: "pdf") , target: :_blank %></p>
 </div>
