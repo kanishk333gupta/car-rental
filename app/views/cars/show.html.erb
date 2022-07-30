@@ -1,115 +1,70 @@
-<p style="color: green"><%= notice %></p>
-<h1>Rent car</h1><br>
-<table class = "table table-striped table-bordered table-hover table-sm">
-  <thead class="thead-dark">
-    <tr>
-      <th>Name</th>
-      <th>Color</th>
-      <th>Model</th>
-      <th>Rental Price (in Rs.)</th>
-      <%# <th>Status</th> %>
-
-      <%if current_user && !current_user.admin? && @car.status%>
-        <th>Rent</th>
-        <% else %>
-        <th>Return</th>
-      <% end %>
-      <%if current_user && current_user.admin?%>
-        <th>Delete</th>
-        <th>Edit</th>
-      <%end%>
-    </tr>
-  </thead>
-    <tr>
-      <%= render @car %>
-
-      <% if @car.status==true && !current_user.admin?%>
-        <td><%=link_to "Rent car",book_path(@car.id)%></td>
-
-
-      <% else %>
-
-<% @correct = Booking.last %>
-<%# CHECK THIS OUT ++++++++++++++++++++++++++++++++++++++++++++++++++++ %>
-<% if current_user.id == @correct.user.id %>
-      <%= form_with(model: @car) do |form| %>
-  <td>
-      <%= form.select :status, [['Return' ,1], ['Keep it with you' ,0]] %><br>
-       <%= form.submit class:'btn btn-primary' %>
-  </td>
-  <% end %>
-  <% else %>
-  <td><% @car.status %></td>
-
-<% end %>
-
-
-      <% end %>
-      <%if current_user && current_user.admin?%>
-        <td><%= button_to "Destroy this car", @car, method: :delete ,data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' },class: 'btn btn-danger' %></td>
-        <td><%= link_to "Edit this car", edit_car_path(@car) %></td>
-      <%end%>
-    </tr>
-</table>
-
-
-
-
-  <%if @car.status==false && !current_user.admin?%>
-    <h1>Booking history</h1><br>
-    <table class = "table table-striped table-bordered table-hover table-sm">
-      <thead class="thead-dark">
-        <tr>
-          <th>Booking time</th>
-          <th>Return time</th>
-          <th>Kilometers</th>
-          <th>Due Amount</th>
-          <th>Service amount</th>
-          <th>Booking charges </th>
-          <th>Total Amount Price (in Rs.)</th>
-          <%if current_user.admin%>
-            <th>User</th>
-          <%end%>
-          <th>Update</th>
-          <%if current_user.admin%>
-            <th>Delete</th>
-          <%end%>
-        </tr>
-      </thead>
-      <% @bookings.each do |booking| %>
-        <tr>
-            <%= render booking %>
+<div class="page-content " id="page-content">
+  <div class="row d-flex justify-content-center">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h3>Rent Car</h3>
+        </div>
+        <div class = "text-center">
+        <h2 class = "car-header"><%= @car.name %></h2>
+        <h5><%= @car.color  %> Color</h5>
+        <h5><%= @car.model %></h4>
+        <br> 
+        <%if @car.status==true%>
+          <p class = "car-available "><%="Book Car !!! "%></p>
+        <%else%>
+          <p class = "car-booked">This Car is under <%="Booking"%> ;) </p>
+        <% end %>
+        <%if current_user && current_user.admin?%>
+        <p>
+            <%= link_to "Delete", @car, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+            <%= link_to "Edit this car", edit_car_path(@car) , class: 'btn btn-primary'%>
+          </p>
+        <%else%> 
+          <% if @car.status && !current_user.admin? %>
+            <p><%= link_to "Rent car @ Rs. #{@car.rental} Per hour " , book_path(@car.id) ,class: "btn btn-outline-primary" %> </p>
+          <% else %>
+            <% @correct = Booking.last %>
+              <%# CHECK THIS OUT ++++++++++++++++++++++++++++++++++++++++++++++++++++ %>
+            <% if current_user.id === @correct.user.id %>
+              <%= form_with(model: @car) do |form| %>
+                <div class="form-outline mb-4 ">
+                  <%= form.select(:status, [['Return', 1], ['Keep it with you', 0]], {}, {class: "btn btn-outline-warning"}) %>
+                  <%= form.submit class:'btn btn-outline-primary' %>
+                </div>
+              <% end %>
+            <% end %> 
           <% end %>
-        </tr>
-    </table>
-  <% end %>
-
-
-
-
-
-
-
-
-<div >
-  <%if true%>
-    <% @car.images.each do |car_img| %>
-        <%= image_tag url_for(car_img) ,width: "444px" ,height:"270px" ,class: "rounded"%>
-    <% end %>
-  <%end%>
+        <% end %> 
+      </div>
+    </div>
+  </div>
 </div>
 
+<% if true %>
 
 
-</br>
-</br>
+<%# Images %>
+
+<div class="card-block"> <h2 class = "text-center">Images</h2>
+  <div class="row" id="sortable">
+    <div class="hovercar">
+      <div class ="gridcar">
+        <% @car.images.each do |car_img| %>
+          <figure><%= image_tag (car_img) ,width: "343px" ,height:"270px" ,class: "rounded bg-white"%>
+          </figure>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<%# Images end %>
 
 
-
-<div>
-
-
-<%if current_user && current_user.admin?%>
+<% if true %>
+<% if current_user.admin?%>
 
 <h1>Booking history</h1><br>
 
@@ -130,7 +85,7 @@
     </tr>
   </thead>
 
-  <% @bookings.each do |booking| %>
+  <% @bookingscar.each do |booking| %>
     <tr>
         <%= render booking %>
       <% end %>
@@ -139,6 +94,8 @@
 
 <% end %>
 
-<%= link_to "Back to cars", cars_path %>
+<%= link_to "Back to cars", cars_path , class: "btn btn-primary mx-1"%>
 
 </div>
+
+<% end %>

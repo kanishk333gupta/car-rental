@@ -1,15 +1,58 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+.body {
+  margin: 10px 10px 10px 10px;
+}
+
+figure {
+  overflow: visible;
+}
+.card {
+  margin: 1%;
+}
+
+.hovermain figure img {
+  width: 444px;
+  height: auto;
+  transition: 0.3s ease-in-out;
+}
+
+.hovermain figure:hover img {
+  transform: scale(1.02);
+}
+
+.hovercar figure img {
+  width: 444px;
+  height: auto;
+  transition: 0.3s ease-in-out;
+}
+
+.hovercar figure:hover img {
+  transform: scale(1.5);
+}
+
+.gridcar {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+
+.car-header {
+  color: #434343;
+  font-weight: 600;
+}
+
+.car-available {
+  color: #00c80a;
+  font-weight: 600;
+}
+.car-booked {
+  color: #ff4517;
+  font-weight: 600;
+}
+.formsize {
+  width: 12rem;
+}

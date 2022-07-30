@@ -11,37 +11,32 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+<div class="form-outline mb-4">
+    <%= form.text_field :name ,placeholder: "Car Name" , class: "form-control form-control-lg mx-1"%>
   </div>
 
-  <div>
-    <%= form.label :color, style: "display: block" %>
-    <%= form.text_field :color %>
+<div class="form-outline mb-4">
+    <%= form.text_field :color ,placeholder: "Color" ,class: "form-control form-control-lg mx-1"%>
   </div>
 
-  <div>
-    <%= form.label :model, style: "display: block" %>
-    <%= form.text_field :model %>
+<div class="form-outline mb-4">
+    <%= form.text_field :model ,placeholder: "Model" ,class: "form-control form-control-lg mx-1"%>
   </div>
 
-  <div>
-    <%= form.label :rental, style: "display: block" %>
-    <%= form.number_field :rental %>
+<div class="form-outline mb-4">
+    <%= form.number_field :rental ,placeholder: "Rental Price (in Rs.)" ,class: "form-control form-control-lg mx-1" %>
   </div>
 
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
+<div class="form-outline mb-4">
+    <%= form.label :"Car Status", class: "form-label" %>
+    <%= form.select(:status, [['Available', 1], ['Booked', 0]], {}, {class: "form-select"}) %>
   </div>
 
-  <div>
-    <%= form.label :image, style: "display: block" %>
-    <%= form.file_field :images , multiple: true %>
+<div class="form-outline mb-4">
+    <%= form.label :"Image Upload" , class: "form-label"%><br />
+    <%= form.file_field :images , multiple: true ,class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
+  <div class="justify-content-center">
+    <%= form.submit "Create Car" ,class: "btn btn-outline-primary"%>
 <% end %>

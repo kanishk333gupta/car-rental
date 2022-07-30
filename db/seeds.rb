@@ -1,3 +1,5 @@
+=begin
+
 User.destroy_all
 User.create!(
   [{
@@ -28,10 +30,7 @@ User.create!(
     :password => "111111"
   }]
 )
-=begin
-  
 
-  
 
 Car.destroy_all
 Car.create!(

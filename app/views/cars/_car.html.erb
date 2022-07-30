@@ -1,5 +1,37 @@
-<td><%= car.name %></td>
-<td><%= car.color %></td>
-<td><%= car.model%></td>
-<td><%= car.rental %></td>
-
+<div class="col-md-3" style="">
+  <div class="card-sub ">
+    <div class="card-block shadow p-3 mb-5 bg-white rounded">
+      <h4 class="card-title text-center "><p><%= car.name %></p></h4>
+      <p class="card-text text-center">
+        <%= car.color  %>
+        <%= car.model %>
+        <%  if car.images.attached?%>
+          <div class="hovermain">
+            <figure><%= image_tag car.images.first , width: "100px" , class:"card-img-top img-fluid rounded"%></figure>
+          </div>
+        <% end %>
+        <div class = "text-center">
+        <%if car.status==true%>
+          <p class = "car-available">Right now Car is <%="Available"%></p>
+        <%else%>
+          <p class = "car-booked">This Car is under <%="Booking"%> ;) </p>
+        <% end %>
+        <%if current_user && current_user.admin?%>
+          <p><%= link_to "Show this car", car %></p>
+        <%else%> 
+            <p><%= link_to "See More Images", car , class: 'btn btn-outline-info' %></p>
+          <% if car.status %>
+          <p><%= link_to "Rent car @ Rs. #{car.rental} Per hour " , car ,class: "btn btn-outline-primary" %> </p>
+          <% else %>
+            <p><%= link_to "Return this car", car , class: 'btn btn-outline-warning' %></p>
+          <% end %> 
+        <% end %> 
+        <%if current_user && current_user.admin?%>
+          <p>
+            <%= link_to "Delete", car, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          </p>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>
