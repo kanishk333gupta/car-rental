@@ -12,9 +12,9 @@
         <% end %>
         <div class = "text-center">
         <%if car.status==true%>
-          <p class = "car-available">Right now Car is <%="Available"%></p>
+          <p class = "car-available bg-light">Right now Car is <%="Available"%></p>
         <%else%>
-          <p class = "car-booked">This Car is under <%="Booking"%> ;) </p>
+          <p class = "car-booked bg-light">This Car is under <%="Booking"%> ;) </p>
         <% end %>
         <%if current_user && current_user.admin?%>
           <p><%= link_to "Show this car", car %></p>

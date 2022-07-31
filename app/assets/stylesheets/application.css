@@ -1,5 +1,15 @@
-.body {
-  margin: 10px 10px 10px 10px;
+.bg-light-blue {
+  background-color: #e9f7fe !important;
+  color: #044464;
+  padding: 1px 14px;
+  border-radius: 4px;
+}
+
+.bg-light-grey {
+  background-color: #d8e3e8 !important;
+  color: #000000;
+  padding: 1px 14px;
+  border-radius: 4px;
 }
 
 figure {
@@ -7,6 +17,14 @@ figure {
 }
 .card {
   margin: 1%;
+}
+
+.hoverfront figure img {
+  transition: 0.3s ease-in-out;
+}
+
+.hoverfront figure:hover img {
+  transform: scale(1.02);
 }
 
 .hovermain figure img {
@@ -46,7 +64,7 @@ figure {
 }
 
 .car-available {
-  color: #00c80a;
+  color: #009c08;
   font-weight: 600;
 }
 .car-booked {

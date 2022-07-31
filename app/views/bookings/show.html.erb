@@ -1,31 +1,56 @@
-<p style="color: green"><%= notice %></p>
-
-<%= @booking.id %>
-<br>
-<%="user"%>
-<%= @booking.user_id %>
-<br>
-<%="User Email "%><br>
-<%= @booking.user.email %>
-<br>
-<%="User car booked "%><br>
-<%= @booking.car.name %>
-
-<%=" date return "%><br>
-<%= @booking.return_date %>
-<br>
-<%=" Booking kilometer == "%>
-<%= @booking.kilometer %>
-
-<%=" Booking due amt == "%>
-<%= @booking.due_amt %>
-
-
-<div>
-  <%= link_to "Edit this booking", edit_booking_path(@booking) %> |
-  <%= link_to "Back to bookings", bookings_path %>
-
-  <%= button_to "Destroy this booking", @booking, method: :delete %>
-
-  <p><%=link_to "Booking download (PDF)" ,booking_path(@booking,format: "pdf") , target: :_blank %></p>
+<div class="container py-3 h-100 ">
+  <div class="row d-flex justify-content-center align-items-center h-100 ">
+    <div class="col-12 col-md-8 ">
+      <div class="shadow-lg p-3 mb-5 bg-white rounded">
+          <div class="card-header">
+            <h3 class = "text-center">Booking Details</h3>
+          </div>
+          <div class = "text-center">
+            <h4 class="mb-2"><%= @booking.car.name %></h4>
+            <h6 class="mb-2">Booking Id : <strong><%= @booking.id %></strong></h6>
+            <div class="mb-3">
+              <span><strong>Booking Date:</strong></span>
+              <span class=" bg-light-blue"><%= @booking.book_date.strftime("%d-%b-%y, %I:%M %p %A") %>  </span> 
+              <br/>
+              <span><strong>Returning Date:</strong></span>
+                <span class=" bg-light-blue"><%= @booking.return_date.strftime('%d-%b-%y, %I:%M %p %A')  %></span>
+            </div>
+            <div class="mb-2">
+              <span><strong>Kilometers:</strong></span>
+              <span class="bg-light">
+                <%= @booking.kilometer %>
+              </span>
+            </div>
+            <div class="mb-2">
+              <span><strong>Initial Pay:</strong></span>200 Rs.
+            </div>
+            <div class="mb-2">
+              <span><strong>Due Amount:</strong></span>
+                  <%=@booking.due_amt %> Rs.
+              </span>
+            </div>
+            <div class="mb-2">
+              <span><strong>Service Charges:</strong></span>
+                  <%=@booking.service_amt %> Rs.
+              </span>
+            </div>
+            <div class="mb-2">
+            <span><strong>Total Amount:</strong></span>
+              <%=$amt%> Rs.
+              <div class="mb-2">
+              <%if current_user && current_user.admin? %>
+              User Email: <strong><%= @booking.user.email %></strong>
+            </div>
+          <div>
+          <span><%= link_to "Back to bookings", bookings_path , class: "btn btn-outline-primary mx-1"%></span>
+          <span><%= button_to "Destroy this booking", @booking, method: :delete , class: "btn btn-outline-danger mx-2"%></span>
+            <% end %>
+          <span><%=link_to "Booking download (PDF)" ,booking_path(@booking,format: "pdf") , target: :_blank , class: "btn btn-outline-primary mx-1" %></span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+ 
+
+

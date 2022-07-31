@@ -1,65 +1,109 @@
-<% if !booking.kilometer %>
+<%# Calculations ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%>
+<% if !booking.kilometer || !booking.service_amt %>
   <% booking.kilometer = 0 %>
-<% end %>
-
-<%booking.due_amt=booking.car.rental*(booking.return_date.to_time-booking.book_date.to_time)/60/60%>
-
-<% if !booking.service_amt %>
   <% booking.service_amt=0 %>
 <% end %>
+<%# Booking due amount based on Hour rental Prices %>
+<%booking.due_amt=booking.car.rental*(booking.return_date.to_time-booking.book_date.to_time)/60/60%>
 
-
-<%= form_with(model: booking) do |form| %>
-  <td><%= booking.book_date %></td>
-
-  <%if  booking.car.status==false && !current_user.admin?%>
-    <td><%= form.datetime_field :return_date %></td>
+<%# Booking Service amount %>
+<% if booking.service_amt %>
+    <%$amt = booking.due_amt + booking.service_amt - 200%>
   <% else %>
-    <td><%= booking.return_date %></td>
-  <% end %>
+    <%$amt = booking.due_amt - 200%>
+<% end %>
 
-  <td><%= form.number_field :kilometer ,class: 'form-control' %><br></td>
+<%# Booking Kilometer %>
+<% if booking.kilometer < 329 %>
+  <% $amt = $amt - 0.02*$amt %>
+<% elsif booking.kilometer > 330 && booking.kilometer < 739 %>
+  <% $amt = $amt - 0.05*$amt %>
+<% else %>
+  <% $amt = $amt - 0.1*$amt %>
+<% end %>
+<%# Calculations End  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%>
 
-  <% if current_user.admin? %>
-    <td><%= form.number_field :due_amt ,class: 'form-control' %> </td>
-  <% else %>
-    <td> <%=booking.due_amt %> </td>
-  <% end %>
 
-  <% if current_user.admin? %>
-    <td><%= form.number_field :service_amt ,class: 'form-control' %><br></td>
-  <% else %>
-    <td> <%=booking.service_amt %> </td>
-  <% end %>
 
-  <td><%="200"%></td>
+<%= form_with(model: booking) do |form| %> 
+<div class="page-content " id="page-content">
+<div class="shadow-lg p-3 mb-5 bg-white rounded"> 
+<div class = "container ">
+  <div class="row d-flex justify-content-center">
+    <div class="col col-xl-5">
+      <h4 class="mb-2"><%= booking.car.name %></h4>
+      <h6 class="mb-2">Booking Id : <strong><%= booking.id %></strong></h6>
+      <div class="mb-3">
+        <div><strong>Booking Date:</strong></div>
+        <span class="bg-light-blue"><%= booking.book_date.strftime("%d-%b-%y, %I:%M %p %A") %>  </span> 
+        <div><strong>Returning Date:</strong></div>
 
-  <% if true %>
-  <% if booking.service_amt %>
-      <%amt = booking.due_amt + booking.service_amt - 200%>
-    <% else %>
-      <%amt = booking.due_amt - 200%>
-  <% end %>
+        <%if  booking.car.status==false && !current_user.admin?%>
+          <%= form.datetime_field :return_date %> 
+          <i class = "text-danger">Update Return Time !</i>
+        <% else %>
+           <span class="bg-light-blue"><%= booking.return_date.strftime('%d-%b-%y, %I:%M %p %A')  %></span>
+        <% end %>                      
 
-  <% if booking.kilometer < 329 %>
-    <% amt = amt - 0.02*amt %>
-  <% elsif booking.kilometer > 330 && booking.kilometer < 739 %>
-    <% amt = amt - 0.05*amt %>
-  <% else %>
-    <% amt = amt - 0.1*amt %>
-  <% end %>
+      </div>
+       <%if current_user && current_user.admin? %>
+        User: <strong><%= booking.user.email %></strong>
+      <%end%>
+    </div>
+    <div class="col col-xl-4">
+      <div class="mb-1">
+        <span><strong>Kilometers:</strong></span>
+        <span class="bg-light">
+          <%= form.number_field :kilometer ,class: 'form-control form-control-sm' %>
+        </span>
+      </div>
+    
+      <div class="mb-1">
+        <span><strong>Initial Pay:</strong></span>
+ 200 Rs.
+      </div>
+      <div class="mb-1">
+        <span><strong>Due Amount:</strong></span>
 
-  <% if amt > 0 %>
-    <td><%=amt%></td>
-  <%else%>
-    <td> Need to pay <%=amt.abs%></td>
-  <%end%>
-  <% end %>
+          <% if current_user.admin? %>
+            <%= form.number_field :due_amt ,class: 'form-control form-control-sm' %> 
+          <% else %>
 
-  <%if current_user && current_user.admin? %>
-    <td><%= booking.user.email %></td>
-  <%end%>
+             <span class = "bg-light-grey"><%=booking.due_amt  %> Rs.</span>
+          <% end %>
+        </span>
+      </div>
+      <div class="mb-1">
+        <span><strong>Service Charges:</strong></span>
+          <% if current_user.admin? %>
+            <%= form.number_field :service_amt ,class: 'form-control form-control-sm' %>
+          <% else %>
+             <span class = "bg-light-grey"><%=booking.service_amt %> Rs.</span>
+          <% end %>
+        </span>
+      </div>
+      <div class="mb-1">
+        <span><strong>Total Amount:</strong></span>
 
-  <td><%= form.submit class:'btn btn-primary' %></td>
-
+          <% if $amt > 0 %>
+             <span class = "bg-light-grey"><%=$amt%> Rs.</span>
+          <%else%>
+             <span class = "bg-light-grey">Need to pay <%=$amt.abs%>Rs.</span>
+          <%end%>
+        </span>
+      </div>
+    </div>
+   <div class="col col-xl-3">
+     
+      <%= form.submit class:'btn btn-outline-info' %> <br /><br />
+      <%= link_to "Show this Booking", booking , class: 'btn btn-outline-primary'%><br /><br />
+      <p><%=link_to "Get Invoice" ,booking_path(booking,format: "pdf") , target: :_blank ,class: 'btn btn-outline-warning'%></p>
+      <%if current_user.admin%>
+        <%= link_to "Delete", booking, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      <%end%>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
 <% end %>

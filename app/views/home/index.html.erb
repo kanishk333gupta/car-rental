@@ -1,17 +1,29 @@
-<div class="alert alert-success" role="alert">
-<div class="mx-auto" style="width: 200px;"><%=link_to "Cars" ,'/cars'%></div>
+<div class="bg-primary text-center py-5 mb-4">
+  <div class="container">
+    <h1 class="fw-light text-white">Rental Cars Pvt Ltd </h1>
+  </div>
 </div>
-
-  <div class="alert alert-primary" role="alert">
-  <div class="mx-auto" style="width: 200px;"><%=link_to "Bookings" ,'/bookings'%></div>
+<div class="container">
+  <div class="row">
+    <div class="col-xl-6 col-md-6 mb-4">
+      <div class="card border-0 shadow">
+        <div class = "hoverfront img-fluid rounded mx-auto d-block py-2" >
+          <figure><%= image_tag "car-front.jpg" , width: "500px" ,height: "300px"%></figure>
+        </div>
+        <div class="card-body text-center"> 
+          <div ><%=link_to "Cars" ,cars_path , class: "btn btn-outline-primary"%></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-md-6 mb-4">
+      <div class="card border-0 shadow">
+        <div class = "hoverfront img-fluid rounded mx-auto d-block py-2" >
+         <figure><%= image_tag "online-booking.jpeg" , width: "500px" ,height: "300px"%></figure>
+        </div>
+        <div class="card-body text-center">
+          <div ><%=link_to "Bookings" ,bookings_path , class: "btn btn-outline-primary"%></div>
+        </div>
+      </div>
+    </div>
   </div>
-
-<%if current_user && current_user.admin?%>
-  <div class="alert alert-secondary" role="alert">
-  <div class="mx-auto" style="width: 200px;"><%=link_to "Users" ,'/users'%></div>
-  </div>
-<%end%>
-
-
-
-
+</div>

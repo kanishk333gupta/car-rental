@@ -6,7 +6,7 @@ class BookingsController < ApplicationController
 
   # GET /bookings or /bookings.json
   def index
-    if current_user.admin==true 
+    if current_user.admin? 
       @bookings = Booking.all
     else
       @bookings = Booking.where(user_id: current_user.id)

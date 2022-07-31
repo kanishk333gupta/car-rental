@@ -1,18 +1,22 @@
-
-<br>
-<br>
-<%= @user.user_name %>
-<br>
-<%= @user.email %>
-<br>
-<br>
-<% if @user.admin %>
-  <%= "Admin"  %>
-<% else %>
-  <%= "Customer" %>
-<% end %>
-
-
-
-
-<p> Currently not working <%= link_to "Edit this user ", edit_user_path(@user) %></p>
+<div class="container py-3 h-100 ">
+  <div class="row d-flex justify-content-center align-items-center h-100 ">
+    <div class="col-12 col-md-8 ">
+      <div class="shadow-lg p-3 mb-5 bg-white rounded">
+          <div class="card-header">
+            <h3 class = "text-center">User Details</h3>
+          </div>
+            Username : <span><%= @user.user_name %></span>
+          <br>
+            User Email : <span><%= @user.email %></span>
+          <p>
+          <% if @user.admin %>
+            As a <%= "Admin"  %> in Car Rental Pvt Ltd 
+          <% else %>
+             As a <span class = "bg-light-grey"><%= "Customer" %> in Car Rental Pvt Ltd </span>
+          <% end %>
+          </p>
+          <td><%= link_to "Delete", @user, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  </div>
+</div>

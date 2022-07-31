@@ -23,7 +23,7 @@ class BookingPdf < Prawn::Document
   end
 
   def header
-    text_box "<b><font size='28'>" + "Car Rental pvt.ltd.</font></b>", :inline_format => true  ,:at =>[Initial_x+140,cursor-20]
+    text_box "<b><font size='28'>" + "Car Rental Pvt Ltd </font></b>", :inline_format => true  ,:at =>[Initial_x+140,cursor-20]
     logopath = "app/assets/images/carlogo.jpeg"
     image logopath, :width => 75,:at => [Initial_x+420,Initial_y+690]
     line [130, 660], [410, 660] 
@@ -57,12 +57,19 @@ class BookingPdf < Prawn::Document
   end
 
   def cardetails(booking)
+
     if !booking.service_amt || !booking.due_amt || !booking.kilometer
       booking.service_amt = 0 
       booking.due_amt = 0 
       booking.kilometer = 0
     end
-    final_amt = booking.due_amt + booking.service_amt - 200 
+    booking.due_amt=booking.car.rental*(booking.return_date.to_time-booking.book_date.to_time)/60/60
+
+    if booking.service_amt 
+      final_amt = booking.due_amt + booking.service_amt - 200
+    else 
+      final_amt = booking.due_amt - 200
+    end 
 
      if (booking.kilometer < 329)
       final_amt = final_amt - 0.02*final_amt
@@ -74,15 +81,16 @@ class BookingPdf < Prawn::Document
   
     text_box "<b><font size='22'>" + "Car Renting details</font></b>", :inline_format => true  ,:at =>[Initial_x,cursor]
     move_down 60
-    table([ ["ID", "Name", "Color", "Model","Kilometers Run", "Initial Payment" , "Due amount" ,"Maintenance Charge"],
-    [booking.id, booking.car.name, booking.car.color ,booking.car.model , booking.kilometer ,"200" , booking.due_amt , booking.service_amt]])  
+    table_content = ([ ["ID", "Name", "Color", "Model","Kilometers Run", "Initial Payment" , "Due amount" ,"Maintenance "],
+    [booking.id, booking.car.name, booking.car.color ,booking.car.model , booking.kilometer ,"200" , booking.due_amt , booking.service_amt]]) 
+    table table_content , width: bounds.width
     move_down Lineheight_y
     if booking.kilometer < 200
-      text_box  "Note:  #{booking.kilometer} Kilometers will give 2% discount", :inline_format => true ,:at =>[15,350]
+      text_box  "Note:  #{booking.kilometer} Kilometers will give you 2% discount !", :inline_format => true ,:at =>[15,350]
     elsif booking.kilometer < 330
-      text_box  "Note:  #{booking.kilometer} Kilometers will give 2% discount", :inline_format => true ,:at =>[15,350]
+      text_box  "Note:  #{booking.kilometer} Kilometers will give you 5% discount !", :inline_format => true ,:at =>[15,350]
     else 
-      text_box  "Note:  #{booking.kilometer} Kilometers will give 2% discount", :inline_format => true ,:at =>[15,350]
+      text_box  "Note:  #{booking.kilometer} Kilometers will give you 10% discount !", :inline_format => true ,:at =>[15,350]
     end
 
     text_box  "<b> Total Payment to be done in</b> Rs. #{final_amt}", :inline_format => true ,:at =>[120,290]
@@ -104,9 +112,9 @@ class BookingPdf < Prawn::Document
       pad(0) { 
         line [10, 30], [530, 30] 
         stroke 
-        text_box "Thank you for doing business with <b><font size='15'>" + "Car Rental Pvt.ltd.</font></b>", :inline_format => true, :at => [Initial_x,cursor]
+        text_box "Thank you for doing business with <b><font size='15'>" + "Car Rental Pvt Ltd </font></b>", :inline_format => true, :at => [Initial_x,cursor]
         move_down Lineheight_y+20
-        text_box "<font size='10'>" + "Car Rental PVT.LTD.</font>", :inline_format => true , :at => [Initial_x,cursor]
+        text_box "<font size='10'>" + "Car Rental Pvt Ltd </font>", :inline_format => true , :at => [Initial_x,cursor]
         move_down Lineheight_y+5
         text_box "<font size='10'>" + "Unit No. 801, 08th Floor</font>", :inline_format => true , :at => [Initial_x,cursor]
         move_down Lineheight_y+5
