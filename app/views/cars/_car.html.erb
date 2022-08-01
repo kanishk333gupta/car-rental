@@ -17,7 +17,7 @@
           <p class = "car-booked bg-light">This Car is under <%="Booking"%> ;) </p>
         <% end %>
         <%if current_user && current_user.admin?%>
-          <p><%= link_to "Show this car", car %></p>
+          <p><%= link_to "Show this car", car, class: 'btn btn-outline-info' %></p>
         <%else%> 
             <p><%= link_to "See More Images", car , class: 'btn btn-outline-info' %></p>
           <% if car.status %>

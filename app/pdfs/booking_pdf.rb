@@ -38,9 +38,9 @@ class BookingPdf < Prawn::Document
         move_down Lineheight_y
         text_box "<i>Booking ID</i> : <b>#{booking.id}</b>", :inline_format => true ,:at =>[Initial_x,cursor-10]
         move_down Lineheight_y
-        text_box "<i>Booking Date</i> : <b>#{booking.created_at.strftime('%d-%b-%Y %A')}</b>", :inline_format => true ,:at =>[Initial_x,cursor-20]
+        text_box "<i>Booking Date</i> : <b>#{booking.book_date.strftime('%d-%b-%Y %A')}</b>", :inline_format => true ,:at =>[Initial_x,cursor-20]
         move_down Lineheight_y
-        text_box "<i>Return Date</i> : <b>#{booking.updated_at.strftime('%d-%b-%Y %A')}</b>", :inline_format => true ,:at =>[Initial_x,cursor-30]
+        text_box "<i>Return Date</i> : <b>#{booking.return_date.strftime('%d-%b-%Y %A')}</b>", :inline_format => true ,:at =>[Initial_x,cursor-30]
         move_down Lineheight_y
         # stroke_bounds
       }

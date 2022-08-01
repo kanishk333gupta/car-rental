@@ -38,7 +38,7 @@ figure {
 }
 
 .hovercar figure img {
-  width: 444px;
+  width: 410px;
   height: auto;
   transition: 0.3s ease-in-out;
 }
@@ -50,6 +50,8 @@ figure {
 .gridcar {
   display: flex;
   flex-direction: row;
+  padding: 2%;
+  margin: 2%;
 }
 
 .card-img-top {
