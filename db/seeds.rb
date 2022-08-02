@@ -109,7 +109,8 @@ Car.create!(
   }])
 
 =end
-
-Booking.destroy_all
+=begin
+  Booking.destroy_all
+=end
 
 p "Updated!!!"
