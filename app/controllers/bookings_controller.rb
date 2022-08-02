@@ -1,10 +1,7 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: %i[ show update destroy ]
+  before_action :set_booking, only: %i[ show update destroy edit]
   before_action :verify_is_admin , except: [:show, :index, :create, :new, :update ,:edit]
-  # before_action :correct_current_user
-  # before_action :correct_user , only: [:edit, :update, :destroy]
 
-  # GET /bookings or /bookings.json
   def index
     if current_user.admin? 
       @bookings = Booking.all
@@ -13,7 +10,6 @@ class BookingsController < ApplicationController
     end
   end
 
-  # GET /bookings/1 or /bookings/1.json
   def show
     respond_to do |format|
       format.html
@@ -24,17 +20,13 @@ class BookingsController < ApplicationController
     end
   end
 
-  # GET /bookings/new
   def new
     @booking = Booking.new
   end
 
-  # GET /bookings/1/edit
   def edit
-    # current_user.bookings.find(params[:id])
   end
 
-  # POST /bookings or /bookings.json
   def create
     @booking = Booking.new(booking_params)
     
@@ -59,7 +51,6 @@ class BookingsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /bookings/1 or /bookings/1.json
   # @booking = current_user.find(params[:id])
   # if current_user.id == @booking.user.id
   def update
@@ -82,7 +73,6 @@ class BookingsController < ApplicationController
     # end
   end
 
-  # DELETE /bookings/1 or /bookings/1.json
   def destroy
     @booking.destroy
     Car.find_by(id:@booking.car_id ).update(status: true )
@@ -92,20 +82,13 @@ class BookingsController < ApplicationController
     end
   end
 
-#   def correct_user
-#     # if !current_user.admin?
-#     @booking = current_user.bookings.find_by(id: params[:id])
-#     redirect_to bookings_path, notice: "Not Authorized To Edit This Friend" if @booking.nil?
-#   # end
-# end
+
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_booking
       @booking = Booking.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def booking_params
       params.require(:booking).permit(:book_date, :return_date, :due_amt, :service_amt, :user_id, :car_id, :kilometer)
     end

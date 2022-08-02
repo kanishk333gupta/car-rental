@@ -21,6 +21,7 @@ figure {
 
 .hoverfront figure img {
   transition: 0.3s ease-in-out;
+  border-radius: 2.5%;
 }
 
 .hoverfront figure:hover img {

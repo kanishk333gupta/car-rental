@@ -25,7 +25,7 @@
             <p><%= link_to "Rent car @ Rs. #{@car.rental} Per hour " , book_path(@car.id) ,class: "btn btn-outline-primary" %> </p>
           <% else %>
             <% @correct = Booking.last %>
-              <%# CHECK THIS OUT ++++++++++++++++++++++++++++++++++++++++++++++++++++ %>
+
             <% if current_user.id === @correct.user.id %>
               <%= form_with(model: @car) do |form| %>
                 <div class="form-outline mb-4 ">

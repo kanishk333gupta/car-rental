@@ -2,34 +2,25 @@ class CarsController < ApplicationController
   before_action :set_car, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
   before_action :verify_is_admin , except: [:show, :index, :update]
-  # before_action :correct_user
 
-
-  # GET /cars or /cars.json
   def index
     @cars = Car.all
   end
 
-  # GET /cars/1 or /cars/1.json
   def show
     if current_user.admin?
       @bookings=@car.bookings.all
       # @bookings = Booking.where(user_id: current_user.id)
-    # @booking = 
     end
   end
 
-
-  # GET /cars/new
   def new
     @car = Car.new
   end
 
-  # GET /cars/1/edit
   def edit
   end
 
-  # POST /cars or /cars.json
   def create
     @car = Car.new(car_params)
 
@@ -44,7 +35,6 @@ class CarsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /cars/1 or /cars/1.json
   def update
     respond_to do |format|
       if @car.update(car_params)
@@ -57,7 +47,6 @@ class CarsController < ApplicationController
     end
   end
 
-  # DELETE /cars/1 or /cars/1.json
   def destroy
     @car.destroy
 
@@ -88,21 +77,13 @@ class CarsController < ApplicationController
   #   end
   # end
 
-#   def correct_user
-#     # if !current_user.admin?
-#     @car = current_user.cars.find_by(id: params[:id])
-#     redirect_to cars_path, notice: "Not Authorized To Edit This Friend" if @car.nil?
-#   # end
-# end
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_car
       @car = Car.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def car_params
       params.require(:car).permit(:name, :color, :model, :rental, :status, :picture , images: [])
     end
