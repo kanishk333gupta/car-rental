@@ -33,3 +33,26 @@ Step 3 : Bookings are ready to be done.
 ### Screenshots
 
 Folder to view schema, Final product and Car Images [Folder](https://github.com/kanishk333gupta/car-rental/tree/main/img).
+
+Login Page
+![App Screenshot](https://github.com/kanishk333gupta/car-rental/blob/main/img/Screenshot%202022-08-02%20at%2011.18.31%20AM.png)
+
+Sign Up Page
+![App Screenshot](https://github.com/kanishk333gupta/car-rental/blob/main/img/Screenshot%202022-08-02%20at%2011.18.45%20AM.png)
+
+Landing Page
+![App Screenshot](https://github.com/kanishk333gupta/car-rental/blob/main/img/Screenshot%202022-08-02%20at%2011.18.58%20AM.png)
+
+Cars Page
+![App Screenshot](https://github.com/kanishk333gupta/car-rental/blob/main/img/Screenshot%202022-08-02%20at%2011.19.16%20AM.png)
+
+Car Page
+![App Screenshot](https://github.com/kanishk333gupta/car-rental/blob/main/img/Screenshot%202022-08-02%20at%2011.19.27%20AM.png)
+
+Bookings Page
+![App Screenshot](https://github.com/kanishk333gupta/car-rental/blob/main/img/Screenshot%202022-08-02%20at%2011.19.39%20AM.png)
+
+Pdf Page
+![App Screenshot](https://github.com/kanishk333gupta/car-rental/blob/main/img/Screenshot%202022-08-02%20at%2011.19.54%20AM.png)
+
+
